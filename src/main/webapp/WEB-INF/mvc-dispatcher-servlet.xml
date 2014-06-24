@@ -1,0 +1,58 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.springapp.mvc"/>
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>/WEB-INF/c3p0.conf</value>
+        </property>
+        <property name="fileEncoding" value="utf-8" />
+    </bean>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"    destroy-method="close">
+        <property name="driverClass"><value>${jdbc.driverClassName}</value></property>
+        <property name="jdbcUrl"><value>${jdbc.url}</value></property>
+        <property name="user"><value>${jdbc.username}</value></property>
+        <property name="password"><value>${jdbc.password}</value></property>
+
+        <property name="minPoolSize"><value>1</value></property>
+        <property name="maxPoolSize"><value>20</value></property>
+        <property name="maxIdleTime"><value>1800</value></property>
+        <property name="acquireIncrement"><value>2</value></property>
+        <property name="maxStatements"><value>0</value></property>
+        <property name="initialPoolSize"><value>2</value></property>
+        <property name="idleConnectionTestPeriod"><value>1800</value></property>
+        <property name="acquireRetryAttempts"><value>30</value></property>
+        <property name="breakAfterAcquireFailure"><value>true</value></property>
+        <property name="testConnectionOnCheckout"><value>false</value></property>
+
+        <!--
+           <property name="properties">
+         <props>
+             <prop key="c3p0.minPoolSize">1</prop>
+             <prop key="c3p0.maxPoolSize">10</prop>
+             <prop key="c3p0.maxIdleTime">1800</prop>
+             <prop key="c3p0.acquireIncrement">2</prop>
+             <prop key="c3p0.maxStatements">0</prop>
+                   <prop key="c3p0.initialPoolSize">2</prop>
+             <prop key="c3p0.idleConnectionTestPeriod">1800</prop>
+             <prop key="c3p0.acquireRetryAttempts">30</prop>
+             <prop key="c3p0.breakAfterAcquireFailure">true</prop>
+             <prop key="c3p0.testConnectionOnCheckout">true</prop>
+             <prop key="user">root</prop>
+             <prop key="password">999999</prop>
+
+         </props>
+        </property>
+       -->
+    </bean>
+</beans>

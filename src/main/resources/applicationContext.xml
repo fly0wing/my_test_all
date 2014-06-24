@@ -1,0 +1,34 @@
+<!--
+ xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:cache="http://www.springframework.org/schema/cache" xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tool="http://www.springframework.org/schema/tool"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+
+      -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	">
+    <bean autowire="default" autowire-candidate="default"
+          id="anAssert" name="anAssert" class="com.dudo.utils.Assert">
+    </bean>
+
+    <alias name="car1" alias="carName22"/>
+    <bean id="car1" class="com.dudo.spring.Car" lazy-init="true">
+        <constructor-arg name="name" value="na"/>
+        <constructor-arg name="company" value="company"/>
+    </bean>
+    <bean id="car2" name="carName2,myCar myCar2;myCar3" scope="prototype" class="com.dudo.spring.Car" lazy-init="false">
+        <property name="company" value="company2"/>
+        <property name="name" value="carName2"/>
+    </bean>
+    <bean id="car3" class="com.dudo.spring.Car" depends-on="car1">
+        <meta key="asd" value="as"/>
+    </bean>
+    <bean id="test1"   class="com.dudo.spring.Test1" >
+        <property name="myCar" ref="car1"/>
+    </bean>
+</beans>
