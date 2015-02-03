@@ -18,7 +18,9 @@ public class EchoServer {
 
     public static void main(String[] args) throws IOException {
         if (args.length < 1) {// Test for correct#of args
-            throw new IllegalArgumentException("Parameter(s):<Port>...");
+//            throw new IllegalArgumentException("Parameter(s):<Port>...");
+            args = new String[1];
+            args[0] = "4700";
         }
 // Createa selector to multiplex listening sockets and connections
         Selector selector = Selector.open();

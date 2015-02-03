@@ -3,10 +3,13 @@ package com.dudo.chat;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
+import java.nio.charset.CharsetDecoder;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +22,7 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class Server {
     private Selector selector;
-    private ByteBuffer readBuffer = ByteBuffer.allocate(8);//调整缓存的大小可以看到打印输出的变化
+    private ByteBuffer readBuffer = ByteBuffer.allocate(1);//调整缓存的大小可以看到打印输出的变化
 //    private Map<SocketChannel, byte[]> clientMessage = new ConcurrentHashMap<>();
 
     public static void main(String[] args) throws IOException {
@@ -30,7 +33,7 @@ public class Server {
     public void start() throws IOException {
         ServerSocketChannel ssc = ServerSocketChannel.open();
         ssc.configureBlocking(false);
-        ssc.bind(new InetSocketAddress("localhost", 8001));
+        ssc.bind(new InetSocketAddress("localhost", 4700));
         selector = Selector.open();
         ssc.register(selector, SelectionKey.OP_ACCEPT);
         while (!Thread.currentThread().isInterrupted()) {
@@ -103,7 +106,7 @@ public class Server {
         }
 
         if (numRead > 0) {
-              System.out.println(new String(readBuffer.array()));
+              System.out.print(new String(readBuffer.array()));
         }
         key.interestOps(SelectionKey.OP_WRITE);
     }
