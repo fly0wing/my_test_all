@@ -52,7 +52,7 @@
             <version>3.4.5</version>
         </dependency>
         <dependency>
-            <groupId>com.91billing</groupId>
+            <groupId>com.wyfbilling</groupId>
             <artifactId>weiyifu-commons-convention</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -70,6 +70,25 @@
             <groupId>javax.cache</groupId>
             <artifactId>cache-api</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.oschina</groupId>
+            <artifactId>j2cache-wyf</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-jdk14</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 <!--        <dependency>
             <groupId>net.sf.ehcache</groupId>
@@ -218,11 +237,26 @@
             <artifactId>netty</artifactId>
             <version>3.5.2.Final</version>
         </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.23.Final</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.jmeter</groupId>
             <artifactId>ApacheJMeter_java</artifactId>
             <version>2.12</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>d-haven-managed-pool</artifactId>
+                    <groupId>d-haven-managed-pool</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>d-haven-event</artifactId>
+                    <groupId>d-haven-event</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.jmeter</groupId>
@@ -245,22 +279,22 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-scm-plugin</artifactId>
                 <version>1.9.1</version>
-                <executions>
-                    <execution>
-                        <id>git-update</id>
-                        <goals>
-                            <goal>update</goal>
-                        </goals>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <id>git-checkin</id>
-                        <goals>
-                            <goal>checkin</goal>
-                        </goals>
-                        <phase>deploy</phase>
-                    </execution>
-                </executions>
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>git-update</id>-->
+                        <!--<goals>-->
+                            <!--<goal>update</goal>-->
+                        <!--</goals>-->
+                        <!--<phase>generate-sources</phase>-->
+                    <!--</execution>-->
+                    <!--<execution>-->
+                        <!--<id>git-checkin</id>-->
+                        <!--<goals>-->
+                            <!--<goal>checkin</goal>-->
+                        <!--</goals>-->
+                        <!--<phase>deploy</phase>-->
+                    <!--</execution>-->
+                <!--</executions>-->
                 <configuration>
                     <connectionType>developerConnection</connectionType>
                     <message>maven auto commit..</message>
