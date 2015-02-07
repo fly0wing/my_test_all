@@ -11,7 +11,6 @@ class ATask implements Runnable{
         //死循环执行打印"I am running!" 和做消耗时间的浮点计算
         while (!Thread.interrupted()) {
             System.out.println("I am running!");
-            System.out.println(Thread.currentThread().isInterrupted());
 
             for (int i = 0; i < 900000; i++) {
                 d =  d + (Math.PI + Math.E) / d;
@@ -22,6 +21,7 @@ class ATask implements Runnable{
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
+            System.out.println(Thread.currentThread().isInterrupted());
         }
         System.out.println(Thread.currentThread().isInterrupted());
     }
