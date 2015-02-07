@@ -9,7 +9,7 @@ class ATask implements Runnable{
 
     public void run() {
         //死循环执行打印"I am running!" 和做消耗时间的浮点计算
-        while (!Thread.currentThread().isInterrupted()) {
+        while (!Thread.interrupted()) {
             System.out.println("I am running!");
             System.out.println(Thread.currentThread().isInterrupted());
 
