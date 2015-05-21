@@ -137,7 +137,7 @@ public class HttpClientUtils {
 //            p.deleteCharAt(p.length() - 1);
 //            logger.info(p.toString());
             httppost.setEntity(new UrlEncodedFormEntity(params));
-            httppost.setEntity(new StringEntity(p.toString()));
+//            httppost.setEntity(new StringEntity(p.toString()));
             httppost.setHeaders(asyncHeaders);
             // 发送请求
             HttpResponse httpresponse = hc.execute(httppost);
