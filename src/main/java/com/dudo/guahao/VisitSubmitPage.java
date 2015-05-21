@@ -107,6 +107,7 @@ public class VisitSubmitPage implements Callable<Object> {
 
         if (Cons.isSend) {
             String post = HttpClientUtils.post(submitUrl, params, HeaderUtils.getSubmitHeaders(url));
+            logger.info("结果:" + post);
         }
         return null;
     }
