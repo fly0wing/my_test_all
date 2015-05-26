@@ -19,15 +19,15 @@ public class GuaHaoMain {
     private static Logger logger = LoggerFactory.getLogger(GuaHaoMain.class);
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        Cons.isSend = false;//fixme 测试 不发送提交请求.
+//        Cons.isSend = false;//fixme 测试 不发送提交请求.
 
-        String date = "2015-05-28";
+        String date = "2015-06-02";
         String url = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=142&keid=1150101&date1=" + date;
 //        String url = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=230&keid=020301&date1=2015-05-29";
-//        String url = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=230&keid=010101&date1=2015-05-28";
+//        String url = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=230&keid=010101&date1=2015-05-26";
 
-        String key = "骨科相关";
-        VisitDateListPage listPage = new VisitDateListPage(url, key);
+        String keys = "半月板,膝";
+        VisitDateListPage listPage = new VisitDateListPage(url, keys);
         Future<List<String>> submit = executorService.submit(listPage);
 
         List<String> details = submit.get();

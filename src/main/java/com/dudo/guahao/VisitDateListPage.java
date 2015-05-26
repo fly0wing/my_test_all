@@ -16,7 +16,7 @@ import java.util.concurrent.Callable;
  */
 public class VisitDateListPage implements Callable<List<String>> {
     private String url;
-    String key;
+    String keys;
     private Map<String, String> hrefs = new LinkedHashMap<>();
     private Map<String, String> priorityHrefs = new LinkedHashMap<>();
     private static Logger logger = LoggerFactory.getLogger(VisitDateListPage.class);
@@ -25,9 +25,9 @@ public class VisitDateListPage implements Callable<List<String>> {
         this(url, null);
     }
 
-    public VisitDateListPage(String url, String key) {
+    public VisitDateListPage(String url, String keys) {
         this.url = url;
-        this.key = key;
+        this.keys = keys;
     }
 
     public Map<String, String> getHrefs() {
@@ -67,10 +67,14 @@ public class VisitDateListPage implements Callable<List<String>> {
                         String text = zhuanchang.getText().toString();
                         desc = String.format("医生:%s,职称:%s,挂号费:%s,专长:%s,href:%s",
                                 yisheng, zhicheng, fee, zhuanchang.getText(), toUrl);
-                        if (StringUtils.isNotBlank(key) && text.contains(key)) {
-                            priorityHrefs.put(toUrl, desc);
-                            hrefs.put(toUrl, desc);
-                            break;
+                        if (StringUtils.isNotBlank(keys)) {
+                            for (String key : keys.split(",")) {
+                                if (text.contains(key)) {
+                                    priorityHrefs.put(toUrl, desc);
+                                    hrefs.put(toUrl, desc);
+                                    break;
+                                }
+                            }
                         }
                     } catch (Exception e) {
                     }
