@@ -1,9 +1,13 @@
 package com.dudo.guahao;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -21,27 +25,41 @@ public class GuaHaoMain {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 //        Cons.isSend = false;//fixme 测试 不发送提交请求.
 
-        String date = "2015-06-02";
-        String url = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=142&keid=1150101&date1=" + date;
-//        String url = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=230&keid=020301&date1=2015-05-29";
-//        String url = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=230&keid=010101&date1=2015-05-26";
+        // 北医三院, 运动骨科 信息.
+        int delay = 7;
+        String prefix = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=142&keid=1150101&date1=";
 
-        String keys = "半月板,膝";
+        String keys = "半月板,关节镜,膝";
+        OffsetDateTime instant = Instant.now().atOffset(ZoneOffset.ofHours(8))
+                .plus(delay, ChronoUnit.DAYS);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = dateTimeFormatter.format(instant);
+
+        String url = prefix + date;
         VisitDateListPage listPage = new VisitDateListPage(url, keys);
+        for (int i = 0; i < 3; i++) {// 成功挂号个数.
+            run(listPage);
+        }
+        executorService.shutdownNow();
+
+        logger.info("end..");
+    }
+
+    private static void run(VisitDateListPage listPage) throws ExecutionException, InterruptedException {
         Future<List<String>> submit = executorService.submit(listPage);
 
         List<String> details = submit.get();
         if (details.size() > 0) {
             String submitPage = details.get(0);
-            logger.info("请求:\n"+listPage.getHrefs().get(submitPage));
+            logger.info("请求:\n" + listPage.getHrefs().get(submitPage));
             Future<Object> submit1 = executorService.submit(new VisitSubmitPage(submitPage));
             submit1.get();
+            return;
         } else {
             logger.info("没有号源了....");
+            Thread.sleep(1000);
+            run(listPage);
         }
-        executorService.shutdownNow();
-
-        logger.info("end..");
     }
 
 }
