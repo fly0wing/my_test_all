@@ -7,19 +7,23 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.SocketTimeoutException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 /**
  * @author zhangkai9
@@ -55,12 +59,16 @@ public class HttpClientUtils {
         return get(url, params, null);
     }
 
+    private static int timeout = 2000;
     public static String get(String url, List<NameValuePair> params, Header[] headers) {
         String body = null;
         HttpGet httpget = null;
         try {
             // Get请求
             httpget = new HttpGet(url);
+            httpget.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, timeout);//连接时间
+            httpget.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, timeout);//数据传输时间
+
             // 设置参数
             String str = EntityUtils.toString(new UrlEncodedFormEntity(params));
             httpget.setHeaders(headers);
@@ -79,6 +87,9 @@ public class HttpClientUtils {
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        } catch (SocketTimeoutException | ConnectTimeoutException e) {
+            e.printStackTrace();
+            return "";
         } catch (IOException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
@@ -128,6 +139,8 @@ public class HttpClientUtils {
         try {
             // Post请求
             HttpPost httppost = new HttpPost(url);
+            httppost.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,timeout);//连接时间
+            httppost.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,timeout);//数据传输时间
             // 设置参数
             StringBuilder p = new StringBuilder();
 //            for (NameValuePair param : params) {
