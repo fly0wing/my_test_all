@@ -20,7 +20,7 @@ public class KettleMain {
 //        runTransformation("D:\\pdi-ce-5.4.0.1-130\\test.ktr");
 //        runTrans("D:\\pdi-ce-5.4.0.1-130\\test.ktr");
         ;
-        String path = ResourceUtils.getFile("/kettle/test.kjb").getCanonicalPath();
+        String path = ResourceUtils.getFile("classpath:kettle/test.kjb").getCanonicalPath();
         System.out.println(path);
         runJob(path);
     }
