@@ -35,7 +35,11 @@
             <artifactId>asm-all</artifactId>
             <version>3.3.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>net.sourceforge.htmlcleaner</groupId>
+            <artifactId>htmlcleaner</artifactId>
+            <version>2.9</version>
+        </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
@@ -51,11 +55,11 @@
             <artifactId>zookeeper</artifactId>
             <version>3.4.5</version>
         </dependency>
-        <dependency>
-            <groupId>com.wyfbilling</groupId>
-            <artifactId>weiyifu-commons-convention</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.wyfbilling</groupId>-->
+            <!--<artifactId>weiyifu-commons-convention</artifactId>-->
+            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
@@ -71,7 +75,7 @@
             <artifactId>cache-api</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <dependency>
+       <!-- <dependency>
             <groupId>net.oschina</groupId>
             <artifactId>j2cache-wyf</artifactId>
             <version>1.0.0-SNAPSHOT</version>
@@ -89,17 +93,17 @@
                     <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
-        </dependency>
-<!--        <dependency>
-            <groupId>net.sf.ehcache</groupId>
-            <artifactId>ehcache-jcache</artifactId>
-            <version>1.5.0-0.5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>jcache</artifactId>
-            <version>1.0.0</version>
         </dependency>-->
+        <!--        <dependency>
+                    <groupId>net.sf.ehcache</groupId>
+                    <artifactId>ehcache-jcache</artifactId>
+                    <version>1.5.0-0.5</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.ehcache</groupId>
+                    <artifactId>jcache</artifactId>
+                    <version>1.0.0</version>
+                </dependency>-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
@@ -131,7 +135,18 @@
             <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.googlecode.jmockit</groupId>
+            <artifactId>jmockit</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.jmockit</groupId>
+            <artifactId>jmockit-coverage</artifactId>
+            <version>0.999.16</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -147,11 +162,11 @@
             <artifactId>gson</artifactId>
             <version>2.2.4</version>
         </dependency>
- <!--       <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>apache-activemq</artifactId>
-            <version>5.9.1</version>
-        </dependency>-->
+        <!--       <dependency>
+                   <groupId>org.apache.activemq</groupId>
+                   <artifactId>apache-activemq</artifactId>
+                   <version>5.9.1</version>
+               </dependency>-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -175,7 +190,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.0.8</version>
+            <version>${mysql-connector.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-jxpath</groupId>
@@ -222,11 +237,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.wyfbilling</groupId>
             <artifactId>weiyifu-utils</artifactId>
             <version>${weiyifu.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -256,21 +271,63 @@
                     <artifactId>d-haven-event</artifactId>
                     <groupId>d-haven-event</groupId>
                 </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-nop</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.jmeter</groupId>
             <artifactId>ApacheJMeter_core</artifactId>
             <version>2.12</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-nop</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.jmeter</groupId>
             <artifactId>ApacheJMeter_components</artifactId>
             <version>2.12</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-nop</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
+        <dependency>
+            <groupId>omni.pentaho-kettle</groupId>
+            <artifactId>kettle-core</artifactId>
+            <version>5.4.0.1-130</version>
+        </dependency>
+        <dependency>
+            <groupId>omni.pentaho-kettle</groupId>
+            <artifactId>kettle-dbdialog</artifactId>
+            <version>5.4.0.1-130</version>
+        </dependency>
+        <dependency>
+            <groupId>omni.pentaho-kettle</groupId>
+            <artifactId>kettle-engine</artifactId>
+            <version>5.4.0.1-130</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.jexcelapi</groupId>
+            <artifactId>jxl</artifactId>
+            <version>2.6.12</version>
+        </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>kettle</id>
+            <url>http://repository.pentaho.org/content/groups</url>
+        </repository>
+    </repositories>
 
     <build>
         <finalName>my_test_all</finalName>
@@ -280,20 +337,20 @@
                 <artifactId>maven-scm-plugin</artifactId>
                 <version>1.9.1</version>
                 <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>git-update</id>-->
-                        <!--<goals>-->
-                            <!--<goal>update</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>generate-sources</phase>-->
-                    <!--</execution>-->
-                    <!--<execution>-->
-                        <!--<id>git-checkin</id>-->
-                        <!--<goals>-->
-                            <!--<goal>checkin</goal>-->
-                        <!--</goals>-->
-                        <!--<phase>deploy</phase>-->
-                    <!--</execution>-->
+                <!--<execution>-->
+                <!--<id>git-update</id>-->
+                <!--<goals>-->
+                <!--<goal>update</goal>-->
+                <!--</goals>-->
+                <!--<phase>generate-sources</phase>-->
+                <!--</execution>-->
+                <!--<execution>-->
+                <!--<id>git-checkin</id>-->
+                <!--<goals>-->
+                <!--<goal>checkin</goal>-->
+                <!--</goals>-->
+                <!--<phase>deploy</phase>-->
+                <!--</execution>-->
                 <!--</executions>-->
                 <configuration>
                     <connectionType>developerConnection</connectionType>
