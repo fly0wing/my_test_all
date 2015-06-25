@@ -9,6 +9,7 @@ import org.pentaho.di.job.Job;
 import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
+import org.springframework.util.ResourceUtils;
 
 /**
  * @author zhangkai9
@@ -18,7 +19,10 @@ public class KettleMain {
     public static void main(String[] args) throws Exception {
 //        runTransformation("D:\\pdi-ce-5.4.0.1-130\\test.ktr");
 //        runTrans("D:\\pdi-ce-5.4.0.1-130\\test.ktr");
-        runJob("D:\\pdi-ce-5.4.0.1-130\\test.kjb");
+        ;
+        String path = ResourceUtils.getFile("/kettle/test.kjb").getCanonicalPath();
+        System.out.println(path);
+        runJob(path);
     }
 
     public static void runJob(String jobname) {
