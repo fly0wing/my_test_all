@@ -310,6 +310,20 @@
             <groupId>omni.pentaho-kettle</groupId>
             <artifactId>kettle-core</artifactId>
             <version>5.4.0.1-130</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jug-lgpl</artifactId>
+                    <groupId>jug-lgpl</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>secondstring</artifactId>
+                    <groupId>secondstring</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>metastore</artifactId>
+                    <groupId>pentaho</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>omni.pentaho-kettle</groupId>
@@ -319,6 +333,11 @@
         <dependency>
             <groupId>omni.pentaho-kettle</groupId>
             <artifactId>kettle-engine</artifactId>
+            <version>5.4.0.1-130</version>
+        </dependency>
+        <dependency>
+            <groupId>omni.pentaho</groupId>
+            <artifactId>metastore</artifactId>
             <version>5.4.0.1-130</version>
         </dependency>
         <dependency>
