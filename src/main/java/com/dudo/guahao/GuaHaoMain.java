@@ -24,10 +24,14 @@ public class GuaHaoMain {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 //        Cons.isSend = false;//fixme 测试 不发送提交请求.
-        Cons.cookie = "Hm_lvt_65f844e6a6e140ab52d02690ed38a38b=1432603123,1433208208,1433294346,1433812985; __c_4482r0aB5AOkcai94482r0aB5AOk2f6ULJM0e6p=0ec399bc613a98bcac679430d4e9126f; Hm_lpvt_65f844e6a6e140ab52d02690ed38a38b=1433813027";
+        Cons.cookie = "Hm_lvt_65f844e6a6e140ab52d02690ed38a38b=1437614539,1437701099,1438046412,1438651506; __c_4F6eStgP1vUbq8Lcai94F6eStgP1vUbq8L618G18BS1t6=2832313dfff5ca6f76c87bd96b76aa66; Hm_lpvt_65f844e6a6e140ab52d02690ed38a38b=1438651567";
         // 北医三院, 运动骨科 信息.
         int delay = 7;
         String prefix = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=142&keid=1150101&date1=";
+
+        // 阜外,心血管
+        //http://www.bjguahao.gov.cn/comm/ghao.php?hpid=4&keid=xnk&date1=2015-06-17
+//        String prefix = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=4&keid=xnk&date1=";
 
         String keys = "半月板,关节镜,膝";
         OffsetDateTime instant = Instant.now().atOffset(ZoneOffset.ofHours(8))
@@ -37,7 +41,7 @@ public class GuaHaoMain {
 
         String url = prefix + date;
         VisitDateListPage listPage = new VisitDateListPage(url, keys);
-        for (int i = 0; i < 3; i++) {// 成功挂号个数.
+        for (int i = 0; i < 30; i++) {// 成功挂号个数.
             run(listPage);
         }
         executorService.shutdownNow();

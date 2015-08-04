@@ -28,10 +28,19 @@ public class VisitSubmitPage implements Callable<Object> {
 
     @Override
     public Object call() throws Exception {
+        boolean succFlag = false;
         String start = "$.get(\"../shortmsg/dx_code.php";
         String baseUrl = "http://www.bjguahao.gov.cn/comm/";
         String end = "\n";
-        String b = HttpClientUtils.get(url, new ArrayList<>(), HeaderUtils.getHeaders());
+        succFlag = false;
+        String b = null;
+        while (!succFlag) {
+            try {
+                b = HttpClientUtils.getWithLoop(url, new ArrayList<>(), HeaderUtils.getHeaders());
+                succFlag = true;
+            } catch (Exception ignore) {
+            }
+        }
         int i = b.indexOf(start);
         String yzm = null;
         if (i > 0) {
@@ -79,7 +88,14 @@ public class VisitSubmitPage implements Callable<Object> {
                 .replace("$.get(\".", "").replace("?&", "&");
 
         if (Cons.isSend) {
-            HttpClientUtils.get(baseUrl + yzm, new ArrayList<>(), HeaderUtils.getAsyncHeaders(url));
+            succFlag = false;
+            while (!succFlag) {
+                try {
+                    HttpClientUtils.getWithLoop(baseUrl + yzm, new ArrayList<>(), HeaderUtils.getAsyncHeaders(url));
+                    succFlag = true;
+                } catch (Exception ignore) {
+                }
+            }
         }
 
         // 短语验证码 输入:
@@ -106,7 +122,16 @@ public class VisitSubmitPage implements Callable<Object> {
         }
 
         if (Cons.isSend) {
-            String post = HttpClientUtils.post(submitUrl, params, HeaderUtils.getSubmitHeaders(url));
+
+            String post = null;
+            succFlag = false;
+            while (!succFlag) {
+                try {
+                    post = HttpClientUtils.postWithLoop(submitUrl, params, HeaderUtils.getSubmitHeaders(url));
+                    succFlag = true;
+                } catch (Exception ignore) {
+                }
+            }
             logger.info("结果:" + post);
         }
         return null;

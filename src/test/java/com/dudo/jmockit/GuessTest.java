@@ -4,6 +4,7 @@ import mockit.Expectations;
 import mockit.Injectable;
 import mockit.Mocked;
 import mockit.Tested;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,6 +13,7 @@ import static org.junit.Assert.*;
  * @author zhangkai9
  * @date 2015/5/29
  */
+@Ignore
 public class GuessTest {
     @Tested        // 表明被修饰实例是将会被自动构建和注入的实例
             Guess guess = new Guess(3);

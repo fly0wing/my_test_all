@@ -39,7 +39,7 @@ public class XMLUtils {
         HtmlCleaner hc = new HtmlCleaner();
         TagNode tn = hc.clean(contents);
         Object[] objects = tn.evaluateXPath(xpath);
-        logger.debug("xpath:" + xpath + ",result:" + Arrays.toString(objects));
+//        logger.debug("xpath:" + xpath + ",result:" + Arrays.toString(objects));
         return objects;
     }
 
@@ -47,7 +47,7 @@ public class XMLUtils {
         HtmlCleaner hc = new HtmlCleaner();
         TagNode tn = hc.clean(contents);
         Object[] objects = tn.evaluateXPath(xpath);
-        logger.debug("xpath:" + xpath + ",find nodes:" + Arrays.toString(objects));
+//        logger.debug("xpath:" + xpath + ",find nodes:" + Arrays.toString(objects));
         for (Object object : objects) {
             if (object instanceof TagNode) {
                 String href = ((TagNode) object).getAttributeByName(attribute);
@@ -68,7 +68,7 @@ public class XMLUtils {
                 result.put(node.getAttributeByName("name"), node.getAttributeByName("value"));
             }
         }
-        logger.debug("xpath:" + xpath + ",find nodes:" + Arrays.toString(objects) + ",result:" + result);
+//        logger.debug("xpath:" + xpath + ",find nodes:" + Arrays.toString(objects) + ",result:" + result);
         return result;
     }
 }

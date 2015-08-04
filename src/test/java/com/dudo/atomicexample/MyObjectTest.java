@@ -2,6 +2,7 @@ package com.dudo.atomicexample;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,6 +10,7 @@ import static org.junit.Assert.*;
 /**
  * Created by zhangkai9 on 2015/5/5.
  */
+@Ignore
 public class MyObjectTest {
     private MyObject obj;
 

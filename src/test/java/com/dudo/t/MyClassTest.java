@@ -2,6 +2,7 @@ package com.dudo.t;
 
 import junit.framework.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -9,6 +10,7 @@ import org.junit.Test;
  * Date: 13-9-30
  * Time: 下午2:00
  */
+@Ignore
 public class MyClassTest {
     MyClass mc;
 

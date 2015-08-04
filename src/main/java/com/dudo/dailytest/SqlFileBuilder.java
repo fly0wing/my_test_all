@@ -10,7 +10,7 @@ import java.text.DecimalFormat;
  * @date 2015/5/6
  */
 public class SqlFileBuilder {
-    private static int sharding = 1024;
+    private static int sharding = 4;
 
     public static void main(String[] args) throws IOException {
         builderBalance();
@@ -27,7 +27,7 @@ public class SqlFileBuilder {
             sb.append(s.replace("total_share_balance_details", "total_share_balance_details" + df.format(i)))
                     .append("\r\n\r\n\r\n");
         }
-        IO.writeToFile(sb.toString(), "D:\\jd_doc\\total_share_balance_details2.sql");
+        IO.writeToFile(sb.toString(), "D:\\jd_doc\\total_share_balance_details_"+sharding+".sql");
     }
 
     private static void builderBalance() throws IOException {
@@ -40,6 +40,6 @@ public class SqlFileBuilder {
             sb.append(s.replace("total_share_balance", "total_share_balance" + df.format(i)))
                     .append("\r\n\r\n\r\n");
         }
-        IO.writeToFile(sb.toString(), "D:\\jd_doc\\total_share_balance2.sql");
+        IO.writeToFile(sb.toString(), "D:\\jd_doc\\total_share_balance_"+sharding+".sql");
     }
 }

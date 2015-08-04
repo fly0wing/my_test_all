@@ -1,6 +1,7 @@
 package com.dudo.designpattern;
 
 import junit.framework.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.*;
@@ -10,6 +11,7 @@ import java.io.*;
  * Date: 13-1-13
  * Time: 下午6:02
  */
+@Ignore
 public class Singleton3Test {
     @Test
     public void test3() throws IOException, ClassNotFoundException {

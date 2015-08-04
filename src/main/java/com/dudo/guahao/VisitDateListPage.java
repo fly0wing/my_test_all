@@ -40,7 +40,15 @@ public class VisitDateListPage implements Callable<List<String>> {
 
     @Override
     public List<String> call() throws Exception {
-        String body = HttpClientUtils.get(url, new ArrayList<>(), HeaderUtils.getHeaders());
+        boolean succFlag = false;
+        String body = null;
+        while (!succFlag) {
+            try {
+                body = HttpClientUtils.getWithLoop(url, new ArrayList<>(), HeaderUtils.getHeaders());
+                succFlag = true;
+            } catch (Exception ignore) {
+            }
+        }
         String baseUrl = "http://www.bjguahao.gov.cn/comm/";
         try {
             Object[] objects = XMLUtils.byPath(body, "//a");

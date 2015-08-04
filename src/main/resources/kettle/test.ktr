@@ -142,25 +142,25 @@
     <template>
       <enabled>N</enabled>
       <append>N</append>
-      <filename>template.xls</filename>
+      <filename>D&#x3a;&#x5c;pdi-ce-5.4.0.1-130&#x5c;template.xls</filename>
     </template>
     <fields>
     </fields>
     <custom>
     <header_font_name>arial</header_font_name>
-    <header_font_size>10</header_font_size>
-    <header_font_bold>N</header_font_bold>
+    <header_font_size>20</header_font_size>
+    <header_font_bold>Y</header_font_bold>
     <header_font_italic>N</header_font_italic>
     <header_font_underline>no</header_font_underline>
     <header_font_orientation>horizontal</header_font_orientation>
-    <header_font_color>black</header_font_color>
+    <header_font_color>blue</header_font_color>
     <header_background_color>none</header_background_color>
     <header_row_height>255</header_row_height>
     <header_alignment>left</header_alignment>
     <header_image/>
     <row_font_name>arial</row_font_name>
-    <row_font_size>10</row_font_size>
-    <row_font_color>black</row_font_color>
+    <row_font_size>16</row_font_size>
+    <row_font_color>red</row_font_color>
     <row_background_color>none</row_background_color>
       </custom>
      <cluster_schema/>
@@ -183,11 +183,11 @@
            <schema_name/>
            </partitioning>
     <connection>mysql</connection>
-    <sql>SELECT&#xd;&#xa;  id&#xd;&#xa;, uuid&#xd;&#xa;, businessNo&#xd;&#xa;, loanNo&#xd;&#xa;, planNo&#xd;&#xa;, orderId&#xd;&#xa;, bizType&#xd;&#xa;, fundType&#xd;&#xa;, modAmount&#xd;&#xa;, taskData&#xd;&#xa;, createDate&#xd;&#xa;FROM cf_statistical_msg&#xd;&#xa;</sql>
+    <sql>&#x24;&#x7b;sql&#x7d;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
