@@ -24,7 +24,7 @@ public class GuaHaoMain {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 //        Cons.isSend = false;//fixme 测试 不发送提交请求.
-        Cons.cookie = "Hm_lvt_65f844e6a6e140ab52d02690ed38a38b=1437614539,1437701099,1438046412,1438651506; __c_4F6eStgP1vUbq8Lcai94F6eStgP1vUbq8L618G18BS1t6=2832313dfff5ca6f76c87bd96b76aa66; Hm_lpvt_65f844e6a6e140ab52d02690ed38a38b=1438651567";
+        Cons.cookie = "Hm_lvt_65f844e6a6e140ab52d02690ed38a38b=1438651506,1438737825,1439256449,1439429042; __c_80rtv3967E951ecai980rtv3967E951ezN574K2g5l=46bca15771016611f0765d518db14aed; Hm_lpvt_65f844e6a6e140ab52d02690ed38a38b=1439429064";
         // 北医三院, 运动骨科 信息.
         int delay = 7;
         String prefix = "http://www.bjguahao.gov.cn/comm/ghao.php?hpid=142&keid=1150101&date1=";
