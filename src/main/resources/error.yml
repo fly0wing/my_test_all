@@ -1,0 +1,6 @@
+- !!com.jd.jr.cf.bizaccount.web.yaml.ErrorProps
+  code: cf_business_005001
+  info: 请求服务接口标示与服务不匹配
+- !!com.jd.jr.cf.bizaccount.web.yaml.ErrorProps
+  code: cf_business_005003
+  info: 手机验证码不匹配
